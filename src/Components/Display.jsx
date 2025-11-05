@@ -1,20 +1,20 @@
 import React from "react";
 
-const Display = () => {
+const Display = ({ clickedValue, operator, rememberValue }) => {
 	return (
-		<div className="w-full h-[100px] border-[3px] border-red-300 p-4">
+		<div className="w-full h-[120px] flex flex-col justify-center border-b border-white/20 px-4 py-3 text-right">
+			{/* Small line showing previous value and operator */}
+			<div className="text-gray-300 text-lg h-[30px]">
+				{rememberValue && operator ? `${rememberValue} ${operator}` : ""}
+			</div>
+
+			{/* Main value display */}
 			<input
-				type="number"
-				min="0"
-				max="999999999"
-				onChange={(e) => {
-					const value = e.target.value;
-					if (value === "") return; // allow empty input
-					const num = Number(value);
-					if (num < 0) e.target.value = "";
-					if (num > 999999999) e.target.value = "999999999";
-				}}
-				className="w-full h-full outline-none border-none text-3xl text-bold px-3 text-right appearance-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+				type="text"
+				value={clickedValue}
+				readOnly
+				className="w-full bg-transparent outline-none border-none text-4xl font-semibold text-white text-right appearance-none 
+				[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
 			/>
 		</div>
 	);
